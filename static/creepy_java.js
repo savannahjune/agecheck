@@ -1,14 +1,18 @@
 $("#creep-button").click(
 	function(evt)
 	{
-		alert("creepy")
-		$.get('/creepy'),
-		function(result) {
-			alert(result)
-		}
+		$.getJSON('/creepy', {
+      your_age: $('input[name = "your_age"]').val(),
+      other_age: $('input[name = "other_age"]').val()
+    }, function(data){
+      if (data.is_creepy) {
+        // tell user they a creep
+        alert("Straight creep");
+      } else {
+         alert("You're alright");
+      }
+    });
 	});
-
-
 
 
   $("#creep-button").click(function (event) {
@@ -22,4 +26,4 @@ $("#creep-button").click(
 
     // Replace everything at #madlib-result with the result of our AJAX call
     $("#creep-result").load(url);
-  })
+  });
